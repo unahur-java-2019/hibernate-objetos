@@ -5,10 +5,10 @@ Hibernate XML Mapping files *(Obsolete !!! We will see in Tutorial 3 the mode "H
 
 ## Description
 A sample code to execute Queries under Hibernate ORM (not directly to sql)
-* JavaSE 1.8
+* JavaSE 8
 * Hibernate 5
 * Maven 4
-* MySQL 5 
+* MySQL 5
 
 ## 1. Database and tables
 We will use the same database and table structure in Tutorial 1
@@ -85,6 +85,6 @@ public class Product
 ## 6. Create HibernateUtil.java 
 Hibernate Utility class with a convenient method to get Session Factory.
 
-## 7. Create a main Application class
+## 7. Create main Application class
 * a class whith main method to test connection
 * implement CRUD operations
