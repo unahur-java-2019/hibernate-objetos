@@ -1,14 +1,14 @@
 # hibernate-tutorial2
-XML Mapping
-* JavaSE 1.8
-* Hibernate 5
-* Maven 4
-* MySQL 5 
+Hibernate XML Mapping files *(Obsolete !!! We will see in Tutorial 3 the mode "Hibernate Annotations")*
 
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/nfriaa/hibernate-tutorial2/issues) [![Travis](https://img.shields.io/travis/rust-lang/rust.svg)](https://github.com/nfriaa/hibernate-tutorial2) [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/nfriaa/hibernate-tutorial2/blob/master/LICENSE)
 
 ## Description
 A sample code to execute Queries under Hibernate ORM (not directly to sql) 
+* JavaSE 1.8
+* Hibernate 5
+* Maven 4
+* MySQL 5 
 
 ## 1. Database and tables
 We will use the same database and table structure in Tutorial 1
