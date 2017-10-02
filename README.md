@@ -41,8 +41,31 @@ public class Product
     // getters and setters here...
 }
 ```
+## 4. Create the XML mapping file
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
-## 4. Create the hibernate config file 'hibernate.cfg.xml'
+<hibernate-mapping>
+    <class name="net.isetjb.hibernatetutorial2.Product" table="product">
+        <meta attribute="class-description">
+            Add your class description here.
+        </meta>
+        <id name="id" type="int" column="id">
+            <generator class="native"/>
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="255" not-null="true"/>
+        </property>
+        <property name="price" type="int">
+            <column name="price" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>
+```
+
+## 5. Create the hibernate config file 'hibernate.cfg.xml' (in ressources folder)
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
@@ -60,9 +83,9 @@ public class Product
 </hibernate-configuration>
 ```
 
-## 5. Create HibernateUtil.java 
+## 6. Create HibernateUtil.java 
 Hibernate Utility class with a convenient method to get Session Factory.
 
-## 6. Create a main Application class
+## 7. Create a main Application class
 * a class whith main method to test connection
 * implement CRUD operations
