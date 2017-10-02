@@ -25,6 +25,7 @@ public class Application
         // Open connection  pool
         factory = HibernateUtil.getSessionFactory();
 
+        // CRUD calls examples
         addProduct("ff", 44);
         addProduct("gg", 22);
         listProducts();
