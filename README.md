@@ -1,5 +1,5 @@
 # hibernate-tutorial2
-Hibernate tutorial 2 : XML Mapping
+XML Mapping
 * JavaSE 1.8
 * Hibernate 5
 * Maven 4
@@ -54,8 +54,8 @@ public class Product
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/persist_db</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">root</property>
-        **<property name="show_sql">true</property>**
-        **<mapping file="src/main/java/net/isetjb/hibernatetutorial2/Product.hbm.xml"/>**
+        <property name="show_sql">true</property>**
+        <mapping file="src/main/java/net/isetjb/hibernatetutorial2/Product.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
 ```
