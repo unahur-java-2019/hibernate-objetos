@@ -14,7 +14,7 @@ A sample code to execute Queries under Hibernate ORM (not directly to sql)
 We will use the same database and table structure in Tutorial 1
 
 ## 2. Create maven project and add dependencies
-```
+```xml
 <!-- MySQL connector -->
 <dependency>
     <groupId>mysql</groupId>
@@ -31,7 +31,7 @@ We will use the same database and table structure in Tutorial 1
 ```
 
 ## 3. Create POJO (Plain Old Java Object) class
-```
+```java
 public class Product
 {
     private int id;
@@ -42,7 +42,7 @@ public class Product
 }
 ```
 ## 4. Create the XML mapping file
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
@@ -66,16 +66,16 @@ public class Product
 ```
 
 ## 5. Create the hibernate config file 'hibernate.cfg.xml' (in ressources folder)
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/persist_db</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/persist_db?useTimezone=true&amp;serverTimezone=UTC</property>
         <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password">root</property>
+        <property name="hibernate.connection.password"></property>
         <property name="show_sql">true</property>
         <mapping file="src/main/java/net/isetjb/hibernatetutorial2/Product.hbm.xml"/>
     </session-factory>
