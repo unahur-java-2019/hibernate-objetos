@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping SYSTEM "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="net.isetjb.hibernatetutorial2.Product" table="product">
+    <class name="net.isetjb.hibernatetutorial2.Product" table="Product">
         <meta attribute="class-description">
             Add your class description here.
         </meta>
