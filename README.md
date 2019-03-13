@@ -19,7 +19,7 @@ Versión inicial, utilizando un archivo de configuración XML para vincular la c
 CREATE DATABASE `persist_db`;
 USE `persist_db`;
 
-CREATE TABLE `product` (
+CREATE TABLE `Product` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   `price` int(11) DEFAULT NULL,
