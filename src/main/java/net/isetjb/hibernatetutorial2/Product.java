@@ -18,10 +18,14 @@ public class Product {
     @ManyToOne(cascade = CascadeType.ALL)
     private Category category;
 
-    public Product(String name, int price, Category category) {
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Brand brand;
+
+    public Product(String name, int price, Category category, Brand brand) {
         this.name = name;
         this.price = price;
         this.category = category;
+        this.brand = brand;
     }
 
     public Product() {
@@ -59,6 +63,13 @@ public class Product {
         this.price = price;
     }
 
+    public Brand getBrand() {
+        return brand;
+    }
+
+    public void setBrand(Brand brand) {
+        this.brand = brand;
+    }
 }
 
 

@@ -13,5 +13,6 @@
 
         <mapping class="net.isetjb.hibernatetutorial2.Product"/>
         <mapping class="net.isetjb.hibernatetutorial2.Category"/>
+        <mapping class="net.isetjb.hibernatetutorial2.Brand"/>
     </session-factory>
 </hibernate-configuration>
