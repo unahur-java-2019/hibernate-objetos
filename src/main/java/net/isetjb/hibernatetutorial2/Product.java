@@ -8,17 +8,11 @@ import javax.persistence.*;
  * @author Nafaa Friaa (nafaa.friaa@isetjb.rnu.tn)
  */
 @Entity
-@Table(name = "product")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
     private int id;
-
-    @Column(name = "name", length = 255, nullable = true)
     private String name;
-
-    @Column(name = "price", nullable = true)
     private int price;
 
     public Product(String name, int price) {
