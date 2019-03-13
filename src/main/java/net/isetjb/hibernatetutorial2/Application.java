@@ -2,6 +2,7 @@ package net.isetjb.hibernatetutorial2;
 
 import java.util.Iterator;
 import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -11,21 +12,17 @@ import org.hibernate.Transaction;
  *
  * @author Nafaa Friaa (nafaa.friaa@isetjb.rnu.tn)
  */
-public class Application
-{
+public class Application {
+
+    private static Session session;
+
     /**
      * Attribute declaration for factory to share between methods.
      */
-    private static SessionFactory factory;
+    public static void main(String[] args) {
+        session = HibernateUtil.getSession();
 
-    public static void main(String[] args)
-    {
-        System.out.println("JavaSE + Maven + Hibernate + MySQL : XML Mapping Mode");
-
-        // Open connection  pool
-        factory = HibernateUtil.getSessionFactory();
-
-        // CRUD calls examples
+        borrarProductos();
         addProduct("ff", 44);
         addProduct("gg", 22);
         listProducts();
@@ -35,9 +32,14 @@ public class Application
         deleteProduct(7);
         listProducts();
 
-        // Cleaning up connection pool
-        factory.close();
+        session.close();
+        HibernateUtil.closeSessionFactory();
+    }
 
+    private static void borrarProductos() {
+        Transaction transaction = session.beginTransaction();
+        session.createNativeQuery("DELETE FROM product").executeUpdate();
+        transaction.commit();
     }
 
     /**
@@ -46,13 +48,10 @@ public class Application
      * @param name
      * @param price
      */
-    public static void addProduct(String name, int price)
-    {
-        Session session = factory.openSession();
+    public static void addProduct(String name, int price) {
         Transaction transaction = null;
 
-        try
-        {
+        try {
             transaction = session.beginTransaction();
 
             // insert new product
@@ -64,37 +63,28 @@ public class Application
 
             transaction.commit();
 
-        } catch (Exception e)
-        {
-            if (transaction != null)
-            {
+        } catch (Exception e) {
+            if (transaction != null) {
                 transaction.rollback();
             }
             //e.printStackTrace();
             System.out.println("ERROR: " + e.getMessage());
-        } finally
-        {
-            session.close();
         }
     }
 
     /**
      * Method to get list of all Products.
      */
-    public static void listProducts()
-    {
-        Session session = factory.openSession();
+    public static void listProducts() {
         Transaction transaction = null;
 
-        try
-        {
+        try {
             transaction = session.beginTransaction();
 
             // Get products by executing HQL Query
             List products = session.createQuery("FROM Product").list();
 
-            for (Iterator iterator = products.iterator(); iterator.hasNext();)
-            {
+            for (Iterator iterator = products.iterator(); iterator.hasNext(); ) {
                 Product product = (Product) iterator.next();
                 System.out.print("ID: " + product.getId());
                 System.out.print(" ===> NAME: " + product.getName());
@@ -103,17 +93,12 @@ public class Application
 
             transaction.commit();
 
-        } catch (Exception e)
-        {
-            if (transaction != null)
-            {
+        } catch (Exception e) {
+            if (transaction != null) {
                 transaction.rollback();
             }
             //e.printStackTrace();
             System.out.println("ERROR: " + e.getMessage());
-        } finally
-        {
-            session.close();
         }
     }
 
@@ -124,13 +109,10 @@ public class Application
      * @param name
      * @param price
      */
-    public static void updateProduct(int id, String name, int price)
-    {
-        Session session = factory.openSession();
+    public static void updateProduct(int id, String name, int price) {
         Transaction transaction = null;
 
-        try
-        {
+        try {
             transaction = session.beginTransaction();
 
             // get the product by id
@@ -142,17 +124,12 @@ public class Application
             session.update(product);
             transaction.commit();
 
-        } catch (Exception e)
-        {
-            if (transaction != null)
-            {
+        } catch (Exception e) {
+            if (transaction != null) {
                 transaction.rollback();
             }
             //e.printStackTrace();
             System.out.println("ERROR: " + e.getMessage());
-        } finally
-        {
-            session.close();
         }
     }
 
@@ -161,13 +138,10 @@ public class Application
      *
      * @param id
      */
-    public static void deleteProduct(int id)
-    {
-        Session session = factory.openSession();
+    public static void deleteProduct(int id) {
         Transaction transaction = null;
 
-        try
-        {
+        try {
             transaction = session.beginTransaction();
 
             // get the product by id
@@ -176,17 +150,12 @@ public class Application
             session.delete(product);
             transaction.commit();
 
-        } catch (Exception e)
-        {
-            if (transaction != null)
-            {
+        } catch (Exception e) {
+            if (transaction != null) {
                 transaction.rollback();
             }
             //e.printStackTrace();
             System.out.println("ERROR: " + e.getMessage());
-        } finally
-        {
-            session.close();
         }
     }
 }
