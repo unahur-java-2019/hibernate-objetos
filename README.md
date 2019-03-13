@@ -1,90 +1,41 @@
-# hibernate-tutorial2
-Hibernate XML Mapping files *(Obsolete !!! We will see in Tutorial 3 the mode "Hibernate Annotations")*
+# hibernate-objetos
+> Tutorial con diferentes versiones del mapeo SQL - objetos. 
 
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-orange.svg?style=flat)](https://github.com/nfriaa/hibernate-tutorial2/issues) [![Travis](https://img.shields.io/travis/rust-lang/rust.svg)](https://github.com/nfriaa/hibernate-tutorial2) [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/nfriaa/hibernate-tutorial2/blob/master/LICENSE)
+Este repositorio tiene varias versiones del mismo código, organizadas con [tags](https://git-scm.com/book/es/v1/Fundamentos-de-Git-Creando-etiquetas) de Git. Al descargar el repositorio se accede por defecto a la versión más completa, pudiendo moverse hacia atrás con el comando `git checkout`.
 
-## Description
-A sample code to execute Queries under Hibernate ORM (not directly to sql)
-* JavaSE 8
-* Hibernate 5
-* Maven 4
-* MySQL 5
+Se detalla a continuación el contenido de cada versión y cómo acceder a ella.
 
-## 1. Database and tables
-We will use the same database and table structure in Tutorial 1
+### Versión 1: XML
 
-## 2. Create maven project and add dependencies
-```xml
-<!-- MySQL connector -->
-<dependency>
-    <groupId>mysql</groupId>
-    <artifactId>mysql-connector-java</artifactId>
-    <version>6.0.6</version>
-</dependency>
-
-<!-- Hibernate -->
-<dependency>
-    <groupId>org.hibernate</groupId>
-    <artifactId>hibernate-core</artifactId>
-    <version>5.2.11.Final</version>
-</dependency>
+```
+git checkout v1-xml
 ```
 
-## 3. Create POJO (Plain Old Java Object) class
-```java
-public class Product
-{
-    private int id;
-    private String name;
-    private int price;
+![image](https://user-images.githubusercontent.com/1585835/54321044-19351700-45ce-11e9-836e-c47e161ca944.png)
 
-    // getters and setters here...
-}
+
+### Versión 2: JPA
+
 ```
-## 4. Create the XML mapping file
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-
-<hibernate-mapping>
-    <class name="net.isetjb.hibernatetutorial2.Product" table="product">
-        <meta attribute="class-description">
-            Add your class description here.
-        </meta>
-        <id name="id" type="int" column="id">
-            <generator class="native"/>
-        </id>
-        <property name="name" type="string">
-            <column name="name" length="255" not-null="true"/>
-        </property>
-        <property name="price" type="int">
-            <column name="price" not-null="true"/>
-        </property>
-    </class>
-</hibernate-mapping>
+git checkout v2-jpa
 ```
 
-## 5. Create the hibernate config file 'hibernate.cfg.xml' (in ressources folder)
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+![image](https://user-images.githubusercontent.com/1585835/54321044-19351700-45ce-11e9-836e-c47e161ca944.png)
 
-<hibernate-configuration>
-    <session-factory>
-        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/persist_db?useTimezone=true&amp;serverTimezone=UTC</property>
-        <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password"></property>
-        <property name="show_sql">true</property>
-        <mapping file="src/main/java/net/isetjb/hibernatetutorial2/Product.hbm.xml"/>
-    </session-factory>
-</hibernate-configuration>
+
+### Versión 3: JPA, con una relación ManyToOne
+
+```
+git checkout v3-manytoone
 ```
 
-## 6. Create HibernateUtil.java 
-Hibernate Utility class with a convenient method to get Session Factory.
+![image](https://user-images.githubusercontent.com/1585835/54320995-cc514080-45cd-11e9-96c3-a728fe8b32c2.png)
 
-## 7. Create main Application class
-* a class whith main method to test connection
-* implement CRUD operations
+
+### Versión 4: JPA, con una relación ManyToOne y otra ManyToMany
+
+```
+git checkout v4-manytomany
+```
+
+![image](https://user-images.githubusercontent.com/1585835/54320889-606ed800-45cd-11e9-821d-efa7789d7f5f.png)
