@@ -28,9 +28,12 @@ public class Application {
     }
 
     private static void insertarProductos(ProductStore store) {
-        store.add(new Product("Yerba La Cumbrecita 500g", 35));
-        store.add(new Product("Almidón de Mandioca Arapeguá 1kg", 80));
-        store.add(new Product("Uvas rosadas 2kg", 110));
+        Category almacen = new Category("Almacén");
+        store.add(new Product("Yerba La Cumbrecita 500g", 35, almacen));
+        store.add(new Product("Almidón de Mandioca Arapeguá 1kg", 80, almacen));
+
+        Category verduleria = new Category("Verdulería");
+        store.add(new Product("Uvas rosadas 2kg", 110, verduleria));
     }
 
     private static void listarProductos(ProductStore store) {
@@ -38,7 +41,7 @@ public class Application {
 
         System.out.println("PRODUCTOS");
         for (Product producto : listaProductos) {
-            System.out.println("id: " + producto.getId() + ", name: " + producto.getName() + ", price: " + producto.getPrice());
+            System.out.println("id: " + producto.getId() + ", name: " + producto.getName() + ", price: " + producto.getPrice() + ", category: " + producto.getCategory().getName());
         }
     }
 
