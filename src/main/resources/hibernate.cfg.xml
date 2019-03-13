@@ -9,6 +9,7 @@
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/persist_db</property>
         <property name="hibernate.connection.username">tallerjava</property>
         <property name="hibernate.connection.password">Java.2019</property>
-        <mapping file="src/main/java/net/isetjb/hibernatetutorial2/Product.hbm.xml"/>
+
+        <mapping class="net.isetjb.hibernatetutorial2.Product"/>
     </session-factory>
 </hibernate-configuration>
