@@ -1,5 +1,7 @@
 package net.isetjb.hibernatetutorial2;
 
+import java.util.List;
+
 /**
  * Application class.
  *
@@ -17,7 +19,14 @@ public class Application {
         store.add(new Product("Yerba La Cumbrecita 500g", 35));
         store.add(new Product("Almidón de Mandioca Arapeguá 1kg", 80));
         store.add(new Product("Uvas rosadas 2kg", 110));
-        store.all();
+
+        List<Product> listaProductos = store.all();
+
+        System.out.println("PRODUCTOS");
+        for (Product producto : listaProductos) {
+            System.out.println("id: " + producto.getId() + ", name: " + producto.getName() + ", price: " + producto.getPrice());
+        }
+
         store.update(4, "aaa", 44);
         store.update(5, "bbb", 55);
         store.delete(6);

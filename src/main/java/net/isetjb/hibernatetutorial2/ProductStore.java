@@ -3,7 +3,6 @@ package net.isetjb.hibernatetutorial2;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import java.util.Iterator;
 import java.util.List;
 
 public class ProductStore {
@@ -51,31 +50,8 @@ public class ProductStore {
     /**
      * Method to get list of all Products.
      */
-    public void all() {
-        Transaction transaction = null;
-
-        try {
-            transaction = session.beginTransaction();
-
-            // Get products by executing HQL Query
-            List products = session.createQuery("FROM Product").list();
-
-            for (Iterator iterator = products.iterator(); iterator.hasNext(); ) {
-                Product product = (Product) iterator.next();
-                System.out.print("ID: " + product.getId());
-                System.out.print(" ===> NAME: " + product.getName());
-                System.out.println(" ===> PRICE: " + product.getPrice());
-            }
-
-            transaction.commit();
-
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            //e.printStackTrace();
-            System.out.println("ERROR: " + e.getMessage());
-        }
+    public List<Product> all() {
+        return session.createQuery("FROM Product", Product.class).getResultList();
     }
 
     /**
