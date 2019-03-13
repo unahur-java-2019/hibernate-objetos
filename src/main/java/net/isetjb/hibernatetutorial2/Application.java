@@ -1,6 +1,8 @@
 package net.isetjb.hibernatetutorial2;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Application class.
@@ -29,11 +31,13 @@ public class Application {
 
     private static void insertarProductos(ProductStore store) {
         Category almacen = new Category("Almacén");
-        store.add(new Product("Yerba La Cumbrecita 500g", 35, almacen, new Brand("La Cumbrecita")));
-        store.add(new Product("Almidón de Mandioca Arapeguá 1kg", 80, almacen, new Brand("Arapeguá")));
-
         Category verduleria = new Category("Verdulería");
-        store.add(new Product("Uvas rosadas 2kg", 110, verduleria, new Brand("Quinta José")));
+        Category productosNaturales = new Category("Productos naturales");
+
+        store.add(new Product("Yerba La Cumbrecita 500g", 35, Arrays.asList(almacen), new Brand("La Cumbrecita")));
+        store.add(new Product("Almidón de Mandioca Arapeguá 1kg", 80, Arrays.asList(almacen, productosNaturales), new Brand("Arapeguá")));
+
+        store.add(new Product("Uvas rosadas 2kg", 110, Arrays.asList(verduleria, productosNaturales), new Brand("Quinta José")));
     }
 
     private static void listarProductos(ProductStore store) {
@@ -41,8 +45,16 @@ public class Application {
 
         System.out.println("PRODUCTOS");
         for (Product producto : listaProductos) {
-            System.out.println("id: " + producto.getId() + ", name: " + producto.getName() + ", price: " + producto.getPrice() + ", category: " + producto.getCategory().getName() + ", brand: " + producto.getBrand().getName());
+            System.out.println("id: " + producto.getId() + ", name: " + producto.getName() + ", price: " + producto.getPrice() + ", brand: " + producto.getBrand().getName());
+            System.out.println("categories: " + listaCategorias(producto));
+            System.out.println();
         }
     }
 
+    private static String listaCategorias(Product producto) {
+        return producto.getCategories()
+                .stream()
+                .map(category -> category.getName())
+                .collect(Collectors.joining(" - "));
+    }
 }

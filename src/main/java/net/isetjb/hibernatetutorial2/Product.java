@@ -1,6 +1,7 @@
 package net.isetjb.hibernatetutorial2;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Product class.
@@ -15,28 +16,33 @@ public class Product {
     private String name;
     private int price;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Category category;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+        name = "Product_Category",
+        joinColumns = {@JoinColumn(name = "product_id")},
+        inverseJoinColumns = {@JoinColumn(name = "category_id")}
+    )
+    private List<Category> categories;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Brand brand;
 
-    public Product(String name, int price, Category category, Brand brand) {
+    public Product(String name, int price, List<Category> categories, Brand brand) {
         this.name = name;
         this.price = price;
-        this.category = category;
+        this.categories = categories;
         this.brand = brand;
     }
 
     public Product() {
     }
 
-    public Category getCategory() {
-        return category;
+    public List<Category> getCategories() {
+        return categories;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
 
     public int getId() {

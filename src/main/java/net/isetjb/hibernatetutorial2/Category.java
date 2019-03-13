@@ -1,6 +1,7 @@
 package net.isetjb.hibernatetutorial2;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Category class.
@@ -13,6 +14,9 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+
+    @ManyToMany(mappedBy = "categories")
+    private List<Product> products;
 
     public Category(String name) {
         this.name = name;
