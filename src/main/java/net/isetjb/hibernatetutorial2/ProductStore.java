@@ -13,11 +13,11 @@ public class ProductStore {
         session = HibernateUtil.getSession();
     }
 
-    void cerrar() {
+    void close() {
         session.close();
     }
 
-    void borrarProductos() {
+    void deleteAll() {
         Transaction transaction = session.beginTransaction();
         session.createNativeQuery("DELETE FROM product").executeUpdate();
         transaction.commit();
@@ -28,7 +28,7 @@ public class ProductStore {
      *
      * @param product
      */
-    public void addProduct(Product product) {
+    public void add(Product product) {
         Transaction transaction = null;
 
         try {
@@ -51,7 +51,7 @@ public class ProductStore {
     /**
      * Method to get list of all Products.
      */
-    public void listProducts() {
+    public void all() {
         Transaction transaction = null;
 
         try {
@@ -85,7 +85,7 @@ public class ProductStore {
      * @param name
      * @param price
      */
-    public void updateProduct(int id, String name, int price) {
+    public void update(int id, String name, int price) {
         Transaction transaction = null;
 
         try {
@@ -114,7 +114,7 @@ public class ProductStore {
      *
      * @param id
      */
-    public void deleteProduct(int id) {
+    public void delete(int id) {
         Transaction transaction = null;
 
         try {
