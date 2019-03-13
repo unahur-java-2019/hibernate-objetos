@@ -26,19 +26,14 @@ public class ProductStore {
     /**
      * Method to save Product in database.
      *
-     * @param name
-     * @param price
+     * @param product
      */
-    public void addProduct(String name, int price) {
+    public void addProduct(Product product) {
         Transaction transaction = null;
 
         try {
             transaction = session.beginTransaction();
 
-            // insert new product
-            Product product = new Product();
-            product.setName(name);
-            product.setPrice(price);
             int inserted_id = (Integer) session.save(product);
             System.err.println("Inserted ID : " + inserted_id);
 
